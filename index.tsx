@@ -3,7 +3,7 @@ import todo from './reducers/TodoReducer';
 import filter from './reducers/FilterReducer';
 
 let store = createStore(
-  combineReducers([todo,filter])
+  combineReducers({todo,filter})
 );
 
 store.subscribe(() => console.log(store.getState()));

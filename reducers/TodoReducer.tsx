@@ -10,10 +10,10 @@ export default function ToDos(state: [] = [], action) {
       ];
 
     case "MARK_COMPLETED":
-      state.map((item, index) => {
+      return state.map((item, index) => {
         if (item.text === action.text) {
           return {
-            ...item,
+            text : item.text,
             completed: !item.completed
           };
         } else {
