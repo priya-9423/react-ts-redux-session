@@ -1,33 +1,14 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import Hello from './Hello';
-import './style.css';
+import {createStore, combineReducers} from 'redux';
+import todo from './reducers/TodoReducer';
+import filter from './reducers/FilterReducer';
 
-interface AppProps { 
-  
-}
-interface AppState {
-  name: string;
-}
+let store = createStore(
+  combineReducers([todo,filter])
+);
 
-class App extends Component<AppProps, AppState> {
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: 'React'
-    };
-  }
+store.subscribe(() => console.log(store.getState()));
 
-  render() {
-    return (
-      <div>
-        <Hello name={this.state.name} />
-        <p>
-          Start editing to see some magic happen :)
-        </p>
-      </div>
-    );
-  }
-}
-
-render(<App />, document.getElementById('root'));
+store.dispatch({type:"ADD_TODO", text:"Milk"});
+store.dispatch({type:"ADD_TODO", text:"Butter"});
+store.dispatch({type:"SET_FILTER", visibility:"SHOW_ALL"});
+store.dispatch({type:"MARK_COMPLETED", text:"Butter"});
