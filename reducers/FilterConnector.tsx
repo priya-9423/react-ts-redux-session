@@ -8,8 +8,10 @@ function FilterContainer(props) {
     <div>
       <FilterPanel
         onClick={filterName =>
-          props.dispatch({ type: "SET_FILTER", visibility: filterName })
+          props.dispatch({ type: "SET_FILTER", visibility: filterName }
+          )
         }
+        
       />
     </div>
   );

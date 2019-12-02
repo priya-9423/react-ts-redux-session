@@ -10,7 +10,7 @@ import reducers from "./reducers";
 import "./style.css";
 
 const store = createStore(reducers);
-// store.subscribe(() => console.log(this.store.getState()) )
+ store.subscribe(() => console.log(store.getState()) )
 
 class App extends Component {
   constructor(props) {
