@@ -8,6 +8,7 @@ import AddTodos from "./Components/AddTodos";
 import ToDoItem from "./Components/TodoItem";
 import TodoList from "./Components/ToDoList";
 import FilterPanel from "./Components/FilterPanel";
+import Container from "./reducers/FilterConnector";
 import './style.css';
 
 class App extends Component {
@@ -46,7 +47,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <FilterPanel onClick={this.onClick}/>
+      <Container onClick={this.onClick}/>
+        
         <AddTodos onSubmitItem={this.itemAdded} />
         <TodoList todos={this.state.todos} onClick={this.itemClicked} />
       </div>
