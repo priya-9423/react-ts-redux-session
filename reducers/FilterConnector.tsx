@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import FilterPanel from "./Components/FilterPanel";
+import FilterPanel from "../Components/FilterPanel";
 
 function FilterContainer(props) {
   return(
