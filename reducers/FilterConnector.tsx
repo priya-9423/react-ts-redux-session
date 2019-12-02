@@ -7,11 +7,9 @@ function FilterContainer(props) {
   return (
     <div>
       <FilterPanel
-        onClick={filterName =>
-          props.dispatch({ type: "SET_FILTER", visibility: filterName }
-          )
+        onClick={value =>
+          props.dispatch({ type: "SET_FILTER", visibility: value })
         }
-        
       />
     </div>
   );
