@@ -7,7 +7,8 @@ import filter from "./reducers/FilterReducer";
 import AddTodos from "./Components/AddTodos";
 import ToDoItem from "./Components/TodoItem";
 import TodoList from "./Components/ToDoList";
-import FilterButtons from "./Components/FilterButtons";
+import FilterPanel from "./Components/FilterPanel";
+import './style.css';
 
 class App extends Component {
   store = createStore(combineReducers({ todo, filter }));
@@ -37,12 +38,15 @@ class App extends Component {
     });
   };
 
+  onClick =e =>
+  {
+
+  }
+
   render() {
     return (
       <div>
-        <FilterButtons value="All">
-        <FilterButtons value="Completed"/>
-        <FilterButtons value="Pending"/>
+        <FilterPanel onClick={this.onClick}/>
         <AddTodos onSubmitItem={this.itemAdded} />
         <TodoList todos={this.state.todos} onClick={this.itemClicked} />
       </div>
