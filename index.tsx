@@ -1,33 +1,32 @@
-import { createStore, combineReducers } from "redux";
+import { createStore } from "redux";
 import React, { Component } from "react";
 import { render } from "react-dom";
+import { Provider } from "react-redux";
 
-import todo from "./reducers/TodoReducer";
-import filter from "./reducers/FilterReducer";
 import AddTodos from "./Components/AddTodos";
-import ToDoItem from "./Components/TodoItem";
-import TodoList from "./Components/ToDoList";
-import FilterPanel from "./Components/FilterPanel";
+
 import Container from "./reducers/FilterConnector";
-import './style.css';
+import reducers from "./reducers";
+import "./style.css";
+
+const store = createStore(reducers);
+// store.subscribe(() => console.log(this.store.getState()) )
 
 class App extends Component {
-  store = createStore(combineReducers({ todo, filter }));
-
   constructor(props) {
     super(props);
     this.state = {
       name: "React",
       todos: []
     };
-
-    this.store.subscribe(() => console.log(this.store.getState()));
-
-    this.store.dispatch({ type: "ADD_TODO", text: "Milk" });
-    this.store.dispatch({ type: "ADD_TODO", text: "Butter" });
-    this.store.dispatch({ type: "SET_FILTER", visibility: "SHOW_ALL" });
-    this.store.dispatch({ type: "MARK_COMPLETED", text: "Butter" });
   }
+  //   this.store.subscribe(() => console.log(this.store.getState()));
+
+  //   this.store.dispatch({ type: "ADD_TODO", text: "Milk" });
+  //   this.store.dispatch({ type: "ADD_TODO", text: "Butter" });
+  //   this.store.dispatch({ type: "SET_FILTER", visibility: "SHOW_ALL" });
+  //   this.store.dispatch({ type: "MARK_COMPLETED", text: "Butter" });
+  // }
 
   itemClicked = e => {
     console.log(e);
@@ -39,21 +38,21 @@ class App extends Component {
     });
   };
 
-  onClick =e =>
-  {
-
-  }
+  onClick = e => {};
 
   render() {
     return (
       <div>
-      <Container onClick={this.onClick}/>
-        
+        <Container onClick={this.onClick} />
         <AddTodos onSubmitItem={this.itemAdded} />
-        <TodoList todos={this.state.todos} onClick={this.itemClicked} />
       </div>
     );
   }
 }
 
-render(<App />, document.getElementById("root"));
+render(
+  <Provider store={store}>
+    <App />{" "}
+  </Provider>,
+  document.getElementById("root")
+);
